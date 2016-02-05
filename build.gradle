@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+version = "${version}"
+
+task myJar(type: Jar){
+    baseName = "cb-services-common"
+    version = "${version}"
+    group = "org.carignbridge.services"
+    manifest {
+        attributes ('Implementation-Title': 'Caring Bridge Microservices Common Library',
+                   'Implementation-Version': "${version}")
+    }
+}
+
+artifacts {
+    archives myJar
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+eclipse {
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '2.9' }
+
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
