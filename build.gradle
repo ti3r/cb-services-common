@@ -3,6 +3,7 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 version = "${version}"
+group = "org.caringbridge"
 
 task myJar(type: Jar){
     baseName = "cb-services-common"
