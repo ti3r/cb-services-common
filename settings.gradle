@@ -1,0 +1,6 @@
+
+prefProjectName(rootProject)
+
+def prefProjectName(project){
+    project.name = 'cb-services-common'
+}
