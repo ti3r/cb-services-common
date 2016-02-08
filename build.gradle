@@ -1,11 +1,12 @@
-plugins{
-    id "com.jfrog.artifactory" version "4.0.0"
+plugins {
+  id "com.jfrog.artifactory" version "4.0.0"
 }
 
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'maven-publish'
+apply from: 'https://raw.githubusercontent.com/ti3r/cb-gradle-config/master/build.gradle'
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.8
 
@@ -49,24 +50,3 @@ publishing {
         }
     }
 }
-
-artifactory {
-    contextUrl = 'http://jenkins.caringbridge.org:8081/artifactory'
-    publish {
-        repository {
-            repoKey = 'libs-snapshot-local' // The Artifactory repository key to publish to
-//            username = "${artifactory_user}" // The publisher user name
-//            password = "${artifactory_password}" // The publisher password
-        }
-        defaults {
-            publications('mavenJava')
-            publishArtifacts = true
-            publishPom = true
-        }
-    }
-    resolve {
-        repoKey = 'jcenter'
-    }
-}
-
-
