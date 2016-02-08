@@ -1,4 +1,4 @@
-package org.caringbridge.service.common;
+package org.caringbridge.common.services.rep;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
