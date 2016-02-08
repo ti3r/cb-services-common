@@ -11,8 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.MDC;
-import org.springframework.util.StringUtils;
-
 /**
  * The CorrelationFilter will pull out the request ID (X-Request-Id) from the header and add it to the 
  * logging context (MDC) so that subsequent logs will include it. This allows log entries to be 
@@ -33,7 +31,7 @@ public class CorrelationFilter implements Filter {
 	        String currentCorrId = httpServletRequest.getHeader(CORRELATION_ID_HEADER);
 	        // Adding a correlation ID of 'none' because there are many log statements that are happening outside of a request
 	        // and this will help identify which requests are missing a request ID
-	        MDC.put(CORRELATION_ID_HEADER, StringUtils.isEmpty(currentCorrId) ? MISSING_REQUEST_ID_VALUE : currentCorrId);
+	        MDC.put(CORRELATION_ID_HEADER, currentCorrId.isEmpty() ? MISSING_REQUEST_ID_VALUE : currentCorrId);
 	        chain.doFilter(request, response);
 		} finally {
 			// Removing the MDC variable will avoid any potential memory leak issues associate with ThreadLocal storage.
