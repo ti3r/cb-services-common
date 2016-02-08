@@ -1,4 +1,6 @@
-rootProject.name='cb-services-common'
-rootProject.group='org.caringbridge'
-rootProject.version='1.0.0-SNAPSHOT'
 
+prefProjectName(rootProject)
+
+def prefProjectName(project){
+    project.name = 'cb-services-common'
+}
