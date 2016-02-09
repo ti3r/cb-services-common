@@ -24,10 +24,6 @@ artifacts {
     archives myJar
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.0')
@@ -49,10 +45,3 @@ eclipse {
 task wrapper(type: Wrapper) { gradleVersion = '2.9' }
 
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-}
