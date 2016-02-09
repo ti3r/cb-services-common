@@ -2,7 +2,6 @@ plugins {
   id "com.jfrog.artifactory" version "4.0.0"
 }
 
-apply from: 'https://raw.githubusercontent.com/ti3r/cb-gradle-config/master/build.gradle'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'com.jfrog.artifactory'
@@ -20,6 +19,13 @@ task myJar(type: Jar){
     }
 }
 
+publishing{
+	publications {
+		name (MavenPublication) {
+			from components.java
+		}
+	}
+}
 artifacts {
     archives myJar
 }
@@ -44,4 +50,30 @@ eclipse {
 
 task wrapper(type: Wrapper) { gradleVersion = '2.9' }
 
-
+artifactory {
+    contextUrl = 'http://jenkins.caringbridge.org:8081/artifactory'
+    publish {
+        repository {
+            repoKey = 'libs-snapshot-local' // The Artifactory repository key to publish to
+            username = "admin" // The publisher user name
+            password = "password" // The publisher password
+        }
+        defaults {
+            publications("name")
+            publishArtifacts = true
+            publishPom = true
+        }
+    }
+    resolve {
+        contextUrl = 'http://jenkins.caringbridge.org:8081/artifactory'
+        repository {
+            repoKey = 'libs-release'
+        }
+        repository {
+            repoKey = 'libs-snapshot'
+        }
+        repository {
+            repoKey = 'remote-repos'
+        }
+    }
+}
