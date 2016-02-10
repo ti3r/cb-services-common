@@ -24,8 +24,8 @@ publishing{
 		name (MavenPublication) {
 			from components.java
 		}
-	}
 }
+
 //artifacts {
 //    archives myJar
 //}
