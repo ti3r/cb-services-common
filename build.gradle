@@ -1,14 +1,26 @@
-plugins {
-  id "com.jfrog.artifactory" version "4.0.0"
+buildscript {
+    repositories {
+        maven { url 'http://repo.spring.io/plugins-release' }
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.0.0'
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'maven-publish'
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-idea'
+apply plugin: 'propdeps-eclipse'
 
 sourceCompatibility = 1.8
 
+<<<<<<< HEAD
 //task myJar(type: Jar){
 //    baseName = "cb-services-common"
 //    version = "${version}"
@@ -29,12 +41,16 @@ publishing{
 //artifacts {
 //    archives myJar
 //}
+=======
+version = "$version"
+>>>>>>> 3bd85613a745529652ff552a5a7c610129b3f803
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.0')
     compile('javax.servlet:javax.servlet-api:3.0.1')
     compile('org.slf4j:log4j-over-slf4j:1.7.11')
+    provided('org.springframework:spring-context:4.2.4.RELEASE')
     testCompile group: 'junit', name: 'junit', version: '4.+'
     testCompile "org.mockito:mockito-core:1.+" 
     testCompile 'org.slf4j:slf4j-simple:1.6.1'
@@ -50,16 +66,29 @@ eclipse {
 
 task wrapper(type: Wrapper) { gradleVersion = '2.9' }
 
+publishing{
+	publications {
+		javaArtifact (MavenPublication) {
+			from components.java
+		}
+	}
+}
+
 artifactory {
     contextUrl = 'http://jenkins.caringbridge.org:8081/artifactory'
     publish {
         repository {
-            repoKey = 'libs-snapshot-local' // The Artifactory repository key to publish to
+            //publish to snapshots if name contains snapshot otherwise publish to release
+            if (  version =~ /.*SNAPSHOT.*/){
+                repoKey = 'libs-snapshot-local' // The Artifactory repository key to publish to
+            }else{
+                repoKey = 'libs-release-local'
+            }
             username = "admin" // The publisher user name
             password = "password" // The publisher password
         }
         defaults {
-            publications("name")
+            publications("javaArtifact")
             publishArtifacts = true
             publishPom = true
         }

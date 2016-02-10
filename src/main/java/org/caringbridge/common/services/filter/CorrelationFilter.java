@@ -31,7 +31,7 @@ public class CorrelationFilter implements Filter {
 	        String currentCorrId = httpServletRequest.getHeader(CORRELATION_ID_HEADER);
 	        // Adding a correlation ID of 'none' because there are many log statements that are happening outside of a request
 	        // and this will help identify which requests are missing a request ID
-	        MDC.put(CORRELATION_ID_HEADER, currentCorrId.isEmpty() ? MISSING_REQUEST_ID_VALUE : currentCorrId);
+	        MDC.put(CORRELATION_ID_HEADER,  (currentCorrId == null || currentCorrId.isEmpty()) ? MISSING_REQUEST_ID_VALUE : currentCorrId);
 	        chain.doFilter(request, response);
 		} finally {
 			// Removing the MDC variable will avoid any potential memory leak issues associate with ThreadLocal storage.
