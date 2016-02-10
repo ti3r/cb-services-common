@@ -9,15 +9,15 @@ apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.8
 
-task myJar(type: Jar){
-    baseName = "cb-services-common"
-    version = "${version}"
-    group = "org.carignbridge.services"
-    manifest {
-        attributes ('Implementation-Title': 'Caring Bridge Microservices Common Library',
-                   'Implementation-Version': "${version}")
-    }
-}
+//task myJar(type: Jar){
+//    baseName = "cb-services-common"
+//    version = "${version}"
+//    group = "org.carignbridge.services"
+//    manifest {
+//        attributes ('Implementation-Title': 'Caring Bridge Microservices Common Library',
+//                   'Implementation-Version': "${version}")
+//    }
+//}
 
 publishing{
 	publications {
@@ -26,9 +26,9 @@ publishing{
 		}
 	}
 }
-artifacts {
-    archives myJar
-}
+//artifacts {
+//    archives myJar
+//}
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
