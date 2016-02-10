@@ -50,6 +50,17 @@ public class FundingDetails {
      * contributors.
      */
     private int contributionsCount;
+    
+    /**
+   	 * The url used to retrieve the fundingdetail.
+   	 */
+   	
+   	private String url;
+   	
+   	/**
+   	 * The provider_id to identify the fundingdetails.
+   	 */
+   	private String providerId;
 
     /**
      * @return the goal
@@ -99,11 +110,6 @@ public class FundingDetails {
         this.contributionsCount = contributionsCount;
     }
     
-    /**
-	 * The url used to retrieve the fundingdetail.
-	 */
-	
-	private String url;
 
 	/**
 	 * @return the url
@@ -118,6 +124,20 @@ public class FundingDetails {
 	 */
 	public void setUrl(final String url) {
 		this.url = url;
+	}
+
+	/**
+	 * @return the providerId
+	 */
+	public String getProviderId() {
+		return providerId;
+	}
+
+	/**
+	 * @param providerId the providerId to set
+	 */
+	public void setProviderId(final String providerId) {
+		this.providerId = providerId;
 	}
 
 }
