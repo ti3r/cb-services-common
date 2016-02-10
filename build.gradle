@@ -85,9 +85,3 @@ artifactory {
         }
     }
 }
-
-release {
-    git {
-        requireBranch = 'release'
-    }
-}
