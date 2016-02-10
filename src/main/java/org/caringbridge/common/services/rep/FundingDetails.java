@@ -28,7 +28,7 @@ public class FundingDetails {
      * @param contributionsCount
      *            The Double current number of contributions
      */
-    public FundingDetails(final Double goal, final Double contributionsTotal, final Double contributionsCount) {
+    public FundingDetails(final Double goal, final Double contributionsTotal, final int contributionsCount) {
         this.goal = goal;
         this.contributionsTotal = contributionsTotal;
         this.contributionsCount = contributionsCount;
@@ -49,7 +49,7 @@ public class FundingDetails {
      * The total number of contributions, likely represents the number of
      * contributors.
      */
-    private Double contributionsCount;
+    private int contributionsCount;
 
     /**
      * @return the goal
@@ -87,7 +87,7 @@ public class FundingDetails {
      * @return the contributionsCount
      */
     @JsonProperty("contributions_count")
-    public Double getContributionsCount() {
+    public int getContributionsCount() {
         return contributionsCount;
     }
 
@@ -95,7 +95,7 @@ public class FundingDetails {
      * @param contributionsCount
      *            the contributionsCount to set
      */
-    public void setContributionsCount(final Double contributionsCount) {
+    public void setContributionsCount(final int contributionsCount) {
         this.contributionsCount = contributionsCount;
     }
     
