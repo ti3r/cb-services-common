@@ -1,10 +1,11 @@
 package org.caringbridge.common.services.annotations;
 
-import org.caringbridge.common.services.filter.config.CorrelationFilterConfig;
 import static org.junit.Assert.assertNotNull;
 import org.springframework.context.annotation.Import;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
+
+import org.caringbridge.common.services.config.CorrelationFilterConfig;
 
 /**
  * Unit test in order to test the inclusion of the right

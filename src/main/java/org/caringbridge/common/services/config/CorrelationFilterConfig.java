@@ -1,4 +1,4 @@
-package org.caringbridge.common.services.filter.config;
+package org.caringbridge.common.services.config;
 
 import org.caringbridge.common.services.filter.CorrelationFilter;
 import org.springframework.context.annotation.Bean;
