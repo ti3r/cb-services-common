@@ -1,11 +1,13 @@
 package org.caringbridge.common.services.config;
 
+import org.springframework.context.annotation.Configuration;
+
+import io.undertow.UndertowOptions;
+import io.undertow.Undertow.Builder;
+
 import org.springframework.boot.context.embedded.undertow.UndertowBuilderCustomizer;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import io.undertow.UndertowOptions;
-import io.undertow.Undertow.Builder;
 
 @Configuration
 public class UndertowConfig {
